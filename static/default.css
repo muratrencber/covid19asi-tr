@@ -157,6 +157,9 @@
 	}
 	
 	.info_box {
+		width: 30%;
+		height: 100px;
+		margin-left: 35%;
 		padding:6px 18px; border-radius:5px;
 	}
 		
@@ -174,7 +177,7 @@
 	
 	.info_box h2 {
 		font-size:43px; color:#fff; text-align:left; font-weight:bold; font-family:baslik; 
-		padding:0px; margin:0px auto;  text-align:center; 
+		padding: 30px 0 0 0; margin:0px auto;  text-align:center; 
 	} 		
 	.info_box h2 span {
 		/* display:block */
@@ -186,10 +189,19 @@
 	
 
 	.svg-turkiye-haritasi {
-		max-width: 94%;  margin: 0 auto; text-align: center;  font-size:10px;  color:#fff
+		position: absolute; left: 4.5%; top: 300px; width: 90%;  margin: 0; padding: 0; text-align: center;  font-size:10px;  color:#fff;
+	}
+
+	.svg-turkiye-haritasi-bilgiler {
+		pointer-events: none; position: absolute; left: 4.5%; top: 300px; width: 90%;  margin: 0; padding: 0; text-align: center;  font-size:10px;  color:#fff;
 	}
  
 	.svg-turkiye-haritasi svg {
+		padding: 0;
+		width: 100%; 
+	}
+	
+	.svg-turkiye-haritasi-bilgiler svg {
 		width: 100%; 
 	}
 	
@@ -221,9 +233,6 @@
 	
 	
 
-	#svg-turkiye-haritasi  {
-		padding-top:15px;  
-	}
 
 
 	#svg-turkiye-haritasi path {
@@ -343,7 +352,11 @@
 	#color2 text, 
 	#color1 text  {
 		 font-size:12px; font-family:arial; fill:#444; font-weight: bold;
-	} 
+	}
+	
+	text  {
+		font-size:12px; font-family:arial; fill:#444; font-weight: bold;
+   } 
  
  
  

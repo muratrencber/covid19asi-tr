@@ -22,6 +22,7 @@ def main():
         result_str += '"'+str(i+1)+'": { "svg": "'+svg_text+'", "x": '+text_x+', "y": ' +text_y+"},"
     return result_str '''
     element_order = 1
+    update_str = soup.find(class_='asisayisiguncellemesaati').text
     for data in parsed_datas:
         id_name = data["id"]
         if id_name != "turkiye":
@@ -32,9 +33,16 @@ def main():
             dose_2_integer = int(dose_2.replace(".",""))
             dose_1_ratio = math.floor(float(dose_1_integer) * 100 / float(nufus_data[element_order - 1]))
             dose_2_ratio = math.floor(float(dose_2_integer) * 100 / float(nufus_data[element_order - 1]))
-            data_dict[data["data-adi"]] = {"isim": data["data-adi"], "sıra": element_order, "svg": svg_properties[str(element_order)]["svg"], "text_x": svg_properties[str(element_order)]["x"], "text_y": svg_properties[str(element_order)]["y"], "doztoplam": dose_total, "doz1": dose_1, "doz2": dose_2, "doz1oran": dose_1_ratio, "doz2oran": dose_2_ratio, "nüfus": nufus_data[element_order -1]}
+            population = str(nufus_data[element_order -1])
+            dot_count = math.floor(len(population) / 3)
+            if len(population) % 3 == 0:
+                dot_count -= 1
+            for i in range(dot_count):
+                target_index = len(population) - ((3 * (i + 1)) + i)
+                population = population[:target_index] + "." + population[target_index:]
+            data_dict[data["data-adi"]] = {"isim": data["data-adi"], "sıra": element_order, "svg": svg_properties[str(element_order)]["svg"], "text_x": svg_properties[str(element_order)]["x"], "text_y": svg_properties[str(element_order)]["y"], "doztoplam": dose_total, "doz1": dose_1, "doz2": dose_2, "doz1oran": dose_1_ratio, "doz2oran": dose_2_ratio, "nüfus": population}
             element_order += 1
-    return render_template("main.html", data_dict = data_dict)
+    return render_template("main.html", data_dict = data_dict, update_str = update_str)
 
 if __name__ == '__main__':
     app.run()
